@@ -73,9 +73,15 @@ def main(
         network_gt = torch.nn.DataParallel(network_gt).cuda()
 
     if snapshot is not None:
-        checkpoint = torch.load(snapshot)
-        network.load_state_dict(checkpoint['network_state_dict'])
-        network_gt.load_state_dict(checkpoint['network_gt_state_dict'])
+        
+        if torch.cuda.is_available():
+            checkpoint = torch.load(snapshot)
+            network.load_state_dict(checkpoint['network_state_dict'])
+            network_gt.load_state_dict(checkpoint['network_gt_state_dict'])
+        else:
+            checkpoint = torch.load(snapshot)
+            network.load_state_dict(checkpoint['network_state_dict'],map_location=torch.device('cpu'))
+            network_gt.load_state_dict(checkpoint['network_gt_state_dict'],map_location=torch.device('cpu'))
 
     evaluate_fieldwise(network, network_gt, testdataset, batchsize=batchsize, level=1, fold_num=fold_num)
     evaluate_fieldwise(network, network_gt, testdataset, batchsize=batchsize, level=2, fold_num=fold_num)
