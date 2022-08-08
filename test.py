@@ -18,7 +18,7 @@ def parse_args():
     parser.add_argument('-fd', "--fold", default=1, type=int, help="5 fold")
     parser.add_argument('-b', "--batchsize", default=1, type=int, help="batch size")
     parser.add_argument('-s', "--snapshot",type=str, help="load weights from snapshot",
-                        default='/home/pf/pfstaff/projects/ozgur_MSconvRNN/trained_models_rep/fold1.pth',)
+                        default='/home/miguel_agroscope/code/ms-convSTAR/trained_models/fold1.pth',)
     parser.add_argument('-hd', "--hidden", default=64, type=int, help="hidden dim")
     parser.add_argument('-nl', "--layer", default=6, type=int, help="num layer")
     parser.add_argument('-stg', "--stage", default=3, type=float, help="num stage")
