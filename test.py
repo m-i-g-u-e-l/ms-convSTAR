@@ -80,8 +80,8 @@ def main(
             network_gt.load_state_dict(checkpoint['network_gt_state_dict'])
         else:
             checkpoint = torch.load(snapshot,map_location=torch.device('cpu'))
-            network.load_state_dict(checkpoint['network_state_dict'],map_location=torch.device('cpu'))
-            network_gt.load_state_dict(checkpoint['network_gt_state_dict'],map_location=torch.device('cpu'))
+            network.load_state_dict(checkpoint['network_state_dict'])#,map_location=torch.device('cpu'))
+            network_gt.load_state_dict(checkpoint['network_gt_state_dict'])#,map_location=torch.device('cpu'))
 
     evaluate_fieldwise(network, network_gt, testdataset, batchsize=batchsize, level=1, fold_num=fold_num)
     evaluate_fieldwise(network, network_gt, testdataset, batchsize=batchsize, level=2, fold_num=fold_num)
