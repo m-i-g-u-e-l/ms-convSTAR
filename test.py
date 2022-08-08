@@ -79,7 +79,7 @@ def main(
             network.load_state_dict(checkpoint['network_state_dict'])
             network_gt.load_state_dict(checkpoint['network_gt_state_dict'])
         else:
-            checkpoint = torch.load(snapshot)
+            checkpoint = torch.load(snapshot,map_location=torch.device('cpu'))
             network.load_state_dict(checkpoint['network_state_dict'],map_location=torch.device('cpu'))
             network_gt.load_state_dict(checkpoint['network_gt_state_dict'],map_location=torch.device('cpu'))
 
