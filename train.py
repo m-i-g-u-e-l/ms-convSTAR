@@ -1,4 +1,5 @@
 import torch
+torch.multiprocessing.set_sharing_strategy('file_system')
 import numpy as np
 torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
@@ -9,6 +10,7 @@ from dataset import Dataset
 from models.multi_stage_sequenceencoder import multistageSTARSequentialEncoder, multistageLSTMSequentialEncoder
 from models.networkConvRef import model_2DConv
 from eval import evaluate_fieldwise
+
 
 
 def parse_args():
